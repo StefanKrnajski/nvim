@@ -4,6 +4,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "Hoffs/omnisharp-extended-lsp.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "folke/neodev.nvim",
   },
   lazy = false,
   priority = 60,
@@ -25,6 +26,27 @@ return {
 
     -- Lua
     lsp_config.lua_ls.setup {
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          runtime = {
+            version = "LuaJIT",
+          },
+          diagnostics = {
+            globals = {
+              "vim",
+              "require"
+            }
+          }
+        }
+      },
+      telemetry = {
+        enable = false,
+      }
+    }
+
+    -- C++
+    lsp_config.clangd.setup {
       capabilities = capabilities,
     }
   end
