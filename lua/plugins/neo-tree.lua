@@ -11,6 +11,9 @@ return {
     require("nvim-treesitter.configs").setup{
       highlight = {
         enable = true,
+      },
+      ensure_installed = {
+        "html", "cpp", "c", "lua"
       }
     }
   end,
