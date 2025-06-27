@@ -66,8 +66,8 @@ vim.keymap.set( "t", "<Escape>", "<C-\\><C-n>", { desc = "Exit terminal mode" } 
 vim.keymap.set( "t", "<A-o>", "<C-\\><C-n>", { desc = "Exit terminal mode" } )
 
 -- Trouble (Diagnostics)
-vim.keymap.set( "n", "<A-d>", "<cmd> TroubleToggle document_diagnostics <CR>", { desc = "Toggle document diagnostics" } )
-vim.keymap.set( "n", "<A-w>", "<cmd> TroubleToggle workspace_diagnostics <CR>", { desc = "Toggle workspace diagnostics" } )
+vim.keymap.set( "n", "<A-d>", "<cmd> Trouble diagnostics toggle <CR>", { desc = "Toggle document diagnostics" } )
+vim.keymap.set( "n", "<A-e>", "<cmd> lua vim.lsp.buf.code_action() <CR>", { desc = "Toggle workspace diagnostics" } )
 
 -- Navigating through change hunks
 vim.keymap.set( "n", "<leader>h", "[c", { desc = "Go to the previous change hunk." } )
