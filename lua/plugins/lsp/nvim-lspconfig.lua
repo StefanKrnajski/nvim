@@ -10,23 +10,28 @@ return {
   priority = 60,
   config = function()
     local lsp_config = require("lspconfig")
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     -- C#
-    lsp_config.omnisharp.setup {
-      capabilities = capabilities,
-      handlers = {
-        ["textDocument/definition"] = require("omnisharp_extended").handler,
-      },
-      cmd = { vim.fn.stdpath("data") .. "\\mason\\bin\\omnisharp.CMD", "--languageserver" },
-      on_init = function(client)
-        client.server_capabilities.semanticTokensProvider = nil
-      end
+    -- require"lspconfig".omnisharp.setup {
+    --   capabilities = capabilities,
+    --   handlers = {
+    --     ["textDocument/definition"] = require("omnisharp_extended").handler,
+    --   },
+    --   cmd = { vim.fn.stdpath("data") .. "\\mason\\bin\\omnisharp.CMD", "--languageserver" },
+    --   on_init = function(client)
+    --     client.server_capabilities.semanticTokensProvider = nil
+    --   end
+    -- }
+
+    -- Typescript
+    require"lspconfig".ts_ls.setup {
+      capabilities = cmp_capabilities
     }
 
     -- Lua
-    lsp_config.lua_ls.setup {
-      capabilities = capabilities,
+    require"lspconfig".lua_ls.setup {
+      capabilities = cmp_capabilities,
       settings = {
         Lua = {
           runtime = {
@@ -46,8 +51,8 @@ return {
     }
 
     -- C++
-    lsp_config.clangd.setup {
-      capabilities = capabilities,
-    }
+    -- lsp_config.clangd.setup {
+    --   capabilities = capabilities,
+    -- }
   end
 }
